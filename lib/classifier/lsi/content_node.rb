@@ -34,7 +34,7 @@ module Classifier
     # key for mapping the vector space.
     def raw_vector_with( word_list )
       if $GSL
-         vec = GSL::Vector.alloc(word_list.size)
+         vec = GSL::Vector.alloc(word_list.size > 0 ? word_list.size : 1)
       else
          vec = Array.new(word_list.size, 0)
       end
