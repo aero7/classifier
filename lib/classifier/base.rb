@@ -30,6 +30,11 @@ module Classifier
   		word_hash_for_words str.gsub(/[^\w\s]/,"").split
   	end
 
+    def keywords str
+      values = clean_word_hash(str).reject{|k, v| k !~ /^[a-zA-Z]+$/ || v == 1}
+      values.sort{|a, b| b[1] <=> a[1]}[0..10].map{|k| k[0]}
+    end
+
     # When a Classifier instance is serialized, it is saved with an instance
     # of Lingua::Stemmer that may not be initialized when deserialized later,
     # raising a "RuntimeError: Stemmer is not initialized".
