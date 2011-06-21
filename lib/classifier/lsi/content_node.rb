@@ -56,7 +56,7 @@ module Classifier
           end
         end
         weighted_total = -1.0 if weighted_total.zero? # if no word in list is known
-        vec = vec.collect { |val| Math.log( val + 1 ) / -weighted_total }
+        vec.collect! { |val| Math.log( val + 1 ) / -weighted_total }
       end
       
       if $GSL
