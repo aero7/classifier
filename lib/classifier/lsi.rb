@@ -313,7 +313,13 @@ module Classifier
     private
     def build_reduced_matrix( matrix, cutoff=0.75 )
       # TODO: Check that M>=N on these dimensions! Transpose helps assure this
-      u, v, s = matrix.SV_decomp
+      # If M >> N, use SV_decomp_mod, which is faster but may use a bit more
+      # memory
+      if $GSL && matrix.size1 > 3 * matrix.size2
+        u, v, s = matrix.SV_decomp_mod
+      else
+        u, v, s = matrix.SV_decomp
+      end
 
       # TODO: Better than 75% term, please. :\
       s_cutoff = s.sort.reverse[(s.size * cutoff).round - 1]
