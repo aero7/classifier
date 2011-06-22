@@ -51,7 +51,7 @@ module Classifier
 		end
 
   	def word_hash_for_words(words)
-  		d = Hash.new
+  		d = {}
   		skip_words = StopWords.for(@options[:language], @options[:lang_dir])
       encoding_name = @options[:encoding].gsub(/_/, '-')
   		words.each do |word|

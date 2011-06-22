@@ -8,7 +8,7 @@ module Classifier
     
   class WordList
     def initialize
-      @location_table = Hash.new
+      @location_table = {}
     end
     
     # Adds a word (if it is new) and assigns it a unique dimension.

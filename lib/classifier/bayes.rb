@@ -15,9 +15,9 @@ class Bayes < Classifier::Base
   # (default values - :language => 'en', :encoding => 'UTF_8')
   #      b = Classifier::Bayes.new :categories => ['Interesting', 'Uninteresting', 'Spam'], :language => 'ru'
 	def initialize(options = {})
-		@categories = Hash.new
+		@categories = {}
 		options.reverse_merge!(:categories => [])
-		options[:categories].each { |category| @categories[prepare_category_name(category)] = Hash.new }
+		options[:categories].each { |category| @categories[prepare_category_name(category)] = {} }
 		@total_words = 0
 		super
 	end
@@ -68,7 +68,7 @@ class Bayes < Classifier::Base
 	#    =>  {"Uninteresting"=>-12.6997928013932, "Interesting"=>-18.4206807439524}
 	# The largest of these scores (the one closest to 0) is the one picked out by #classify
 	def classifications(text)
-		score = Hash.new
+		score = {}
 		@categories.each do |category, category_words|
 			score[category.to_s] = 0
 			total = category_words.values.sum
@@ -127,7 +127,7 @@ class Bayes < Classifier::Base
 	# more criteria than the trained selective categories. In short,
 	# try to initialize your categories at initialization.
 	def add_category(category)
-		@categories[prepare_category_name(category)] = Hash.new
+		@categories[prepare_category_name(category)] = {}
 	end
 	
 	alias append_category add_category

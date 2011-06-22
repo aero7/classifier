@@ -156,7 +156,7 @@ module Classifier
     def highest_relative_content( max_chunks=10 )
        return [] if needs_rebuild?
        
-       avg_density = Hash.new
+       avg_density = {}
        @items.each_key { |x| avg_density[x] = proximity_array_for_content(x).inject(0.0) { |x,y| x + y[1]} }
        
        avg_density.keys.sort_by { |x| avg_density[x] }.reverse[0..max_chunks-1].map
