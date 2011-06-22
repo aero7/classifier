@@ -42,6 +42,7 @@ class LSITest < Test::Unit::TestCase
 
 	def test_basic_categorizing
 	  lsi = Classifier::LSI.new
+	  lsi.add_item @str1, "Dog"
 	  lsi.add_item @str2, "Dog"
 	  lsi.add_item @str3, "Cat"
 	  lsi.add_item @str4, "Cat"
