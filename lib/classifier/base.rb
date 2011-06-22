@@ -63,7 +63,8 @@ module Classifier
   				d[key] += 1
   			end
   		end
-  		return d
+      d.reject!{|k, v| v < @options[:word_frequency_threshold]} if @options[:word_frequency_threshold]
+      return d
   	end
   end
 end
