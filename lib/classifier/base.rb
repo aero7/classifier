@@ -27,7 +27,7 @@ module Classifier
   	
   	# Return a word hash without extra punctuation or short symbols, just stemmed words
   	def clean_word_hash str
-  		word_hash_for_words str.gsub(/[^\w\s]/,"").split
+  		word_hash_for_words str.gsub(/[^a-zA-Z\s]+/," ").split
   	end
 
     def keywords str
