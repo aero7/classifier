@@ -52,7 +52,7 @@ module Classifier
         weighted_total = 0.0
         vec.each do |term|
           if ( term > 0 )
-            weighted_total += (( term / total_words ) * Math.log( term / total_words ))
+            weighted_total += (( term / total_words ) * ($GSL ? GSL::Sf : Math).log( term / total_words ))
           end
         end
         weighted_total = -1.0 if weighted_total.zero? # if no word in list is known
