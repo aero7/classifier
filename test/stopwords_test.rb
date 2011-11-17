@@ -32,7 +32,7 @@ class StopWordsTest < Test::Unit::TestCase
     lang = 'xxyyzz'
     @tmp = File.join(File.dirname(__FILE__), lang)
     File.open(@tmp, 'w') { |f| f.puts "str1\nstr2" }
-    assert_equal ["str1", "str2"], Classifier::StopWords.for(lang,
+    assert_equal Set.new(["str1", "str2"]), Classifier::StopWords.for(lang,
       File.dirname(@tmp))
   end
 end

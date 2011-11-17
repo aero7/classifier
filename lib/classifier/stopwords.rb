@@ -1,3 +1,4 @@
+require 'set'
 module Classifier
 
   module StopWords
@@ -27,7 +28,7 @@ module Classifier
 
         lang_file = File.join(lang_dir, language)
         if File.exist?(lang_file)
-          data = []
+          data = Set.new
           File.open(lang_file, 'r:utf-8') do |f|
             f.each_line do |line|
               line = line.gsub(/#.*/, '').strip
@@ -37,6 +38,6 @@ module Classifier
           data unless data.empty?
         end
       end
-        
+
   end
 end
