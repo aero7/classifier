@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION.yml",
-     "kitop-classifier.gemspec",
      "lib/classifier.rb",
      "lib/classifier/base.rb",
      "lib/classifier/bayes.rb",
